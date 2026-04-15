@@ -114,8 +114,8 @@ python main.py
 
 For each iteration `i` (1 to `iter_times`):
 
-1. **Information-Guided Branch** — Run FOIL with information-theoretic gain (`foil_gain_v1`), which favors frequent, high-information predicates. Save rules to `middle/rules_v1_{i}.yaml`.
-2. **Balanced Branch** — Run FOIL with frequency-based gain (`foil_gain_v2`), which treats frequent and infrequent predicates equally. Save rules to `middle/rules_v2_{i}.yaml`.
+1. **FOIL-1** — Run FOIL with information-theoretic gain (`foil_gain_v1`), which favors frequent, high-information predicates. Save rules to `middle/rules_v1_{i}.yaml`.
+2. **FOIL-2** — Run FOIL with frequency-based gain (`foil_gain_v2`), which treats frequent and infrequent predicates equally. Save rules to `middle/rules_v2_{i}.yaml`.
 3. **Branch Aggregation** — Merge v1 and v2 rules (deduplication) into `middle/rules_{i}.yaml`.
 4. **Full Aggregation** — Merge all iterations' rules (1 to i) into `middle/rules_all_from_1_to_{i}.yaml`.
 5. **Score & Evaluate** — Compute tf–idf scores and test-set accuracy for each rule set; apply tf–idf weighted voting to resolve label conflicts.
@@ -148,31 +148,6 @@ ndrishti(X): 0.8710
 ```
 
 ---
-
-## Algorithm Details
-
-### FOIL Gain Functions
-
-- **v1 (Information-Guided Branch):** `gain = now_p × (log₂(now_p/(now_p+now_n)) - log₂(pre_p/(pre_p+pre_n)))` — Favors frequent, high-information predicates.
-- **v2 (Balanced Branch):** `gain = now_p / (now_p + now_n)` — Treats frequent and infrequent predicates equally.
-
-### Decayed Predicate Selection Metrics
-
-For each predicate `p`, the decay factor is computed as:
-
-```
-decay(p) = θ^(Cohesion(T_p) + ε)
-```
-
-where `θ = 0.95`, `ε = 1e-5`, and `Cohesion(T_p)` is the average pairwise Jaccard similarity among positive instances covered by predicate `p`.
-
-The effective gain at iteration `i` becomes: `effective_gain = foil_gain × decay(p)^(count(p))`, where `count(p)` is the number of times `p` appeared in prior iterations' rule bases.
-
-This mechanism penalizes overused or replaceable predicates, promoting diversity and novel rule discovery across iterations.
-
-### TF-IDF Weighted Voting
-
-When multiple learned rules assign conflicting labels to the same instance, a tf–idf–weighted voting scheme resolves the conflict. Each rule's vote is weighted by its tf–idf score, which reflects the rule's discriminative power — rules that are more specific to a class receive higher weight, enhancing decision reliability.
 
 ## Data Format
 
