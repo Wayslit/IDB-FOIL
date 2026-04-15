@@ -1,0 +1,2 @@
+gdrishti(X): ACDR(X,A)∧area(A,N)∧threshold(N,0.43872327083464,10000)∨HCDR(X,A)∧area(A,N)∧threshold(N,0.575088339222615,10000)∨VCDR(X,A)∧area(A,N)∧threshold(N,0.631747211895911,10000)
+ndrishti(X): ACDR(X,A)∧area(A,N)∧threshold(N,0,0.3042194284870775)∨HCDR(X,A)∧area(A,N)∧threshold(N,0,0.5173954983922828)∨VCDR(X,A)∧area(A,N)∧threshold(N,0,0.43077738515901043)
