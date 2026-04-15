@@ -53,7 +53,7 @@ pip install numpy pyyaml
 ## Installation
 
 ```bash
-git clone https://github.com/<your-username>/IDB-FOIL.git
+git clone https://github.com/Wayslit/IDB-FOIL.git
 cd IDB-FOIL
 pip install numpy pyyaml
 ```
