@@ -1,0 +1,4 @@
+average_accuray: 0.8809523809523809
+downtown(X): 0.9285714285714286
+highway(X): 0.75
+mountain road(X): 0.9642857142857143

@@ -1,0 +1,4 @@
+average_accuray: 0.8833333333333333
+cook(X): 0.9
+farmer(X): 1.0
+teacher(X): 0.75
